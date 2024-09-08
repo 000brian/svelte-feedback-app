@@ -24,12 +24,12 @@
 		feedback = feedback.filter((item) => item.id != itemId)
 	}
 	$: count = feedback.length;
-	$: average = feedback.reduce(() =>, 0)
+	$: average = feedback.reduce((a, item) => a + item.rating, 0) / feedback.length;
 
 </script>
 
 <main class="container">
-	<h1>{count}</h1>
+	<h1>{average}</h1>
 	<FeedbackList feedback={feedback} on:delete-feedback={deleteFeedback}/>
 
 	
